@@ -78,7 +78,7 @@ including_gst=total
 z=0
 while(z==0):                           #checking if the total is > 0 print result and stop the program , if not ask the user to purchase the books are not.
     if including_gst>0:
-        print("total+12% GST+Rs.250.00 Delivery Charges=",including_gst)
+        print("books cost+12% GST+Rs.250.00 Delivery Charges=",including_gst)
         print("happy learning")
         z=1
     else:
