@@ -21,44 +21,68 @@
 
 #solution
 
-
-
-
+import sys
 
 
 print('''List of avialable books are given below\nIntroduction to Python Programming : Rs 499.00\nPython Libraries Cookbook : Rs. 855.00\nSelect 3 for Data Science in Python : Rs. 645.00\ngive input 0 if you don't want that book to purchase''')
 
-def library():                                                                #for taking the user inputs
-    a=int(input("enter no.of Introduction to Python Programming = "))
-    b=int(input("enter no.of Python Libraries Cookbook costs = "))
-    c=int(input("enter no.of  Data Science in Python costs = "))
-    return a*499.00+b*855+c*645
+def library():
+    try:
+        a=int(input("enter no.of Introduction to Python Programming = "))
+    except:
+        print("invalid input")
+        return 0
+    try:
+        b=int(input("enter no.of Python Libraries Cookbook costs = "))
+    except:
+        print("invalid input")
+        return 0
+    try:
+        c=int(input("enter no.of  Data Science in Python costs = "))
+    except:
+        print("invalid input")
+        return 0
+    
+
+    if a&b&c==0:
+        deli=0
+    else:
+        deli=250
+
+    total=1.12*(a*499.00+b*855+c*645)+deli
+    # return a*499.00+b*855+c*645
+    return total
+
 
 total=library()
 
 
-
-
-
-def delivery_charges(total):                                                        #checking for the total if the user give all the inputs as 0's then ask another time to purchase 
+def user_interaction(total):
     if total==0:
-        a=int(input("do you want purchase any book\n for YES click 1 \n for NO click 0"))
-        if a==0:
+        try:
+            a=int(input("do you want purchase any book\n for YES click 1 \n for NO click 0\n"))
+        except:
+            print("invalid input")
             return 0
+        if a==0:
+            print("thanks for visiting")
+            sys.exit(0)                        # to terminate the program
         if a==1:
             print("To purchase any Books give valid inputs ")
             total=library()
     else:
         return 250
-    return 250
+    return total
 
-including_gst=1.12*total+delivery_charges(total)                #calculating the total amount including gst and delivery charges
-i=including_gst
-print("Amount only for Books total = {0}".format(total))
-print("Amount for delivery charges = 250.00")
-print("12% GST")
-print("total+12% GST+Rs.250.00 Delivery Charges=",i)
-
+including_gst=total
+z=0
+while(z==0):                           #checking if the total is > 0 print result and stop the program , if not ask the user to purchase the books are not.
+    if including_gst>0:
+        print("total+12% GST+Rs.250.00 Delivery Charges=",including_gst)
+        print("happy learning")
+        z=1
+    else:
+        including_gst=user_interaction(total)   #user interaction
 
 
 
